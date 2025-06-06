@@ -160,7 +160,26 @@
         document.addEventListener('DOMContentLoaded', function () {
             const gallery = document.getElementById('gallery');
             const targetUrl = 'https://www.profitableratecpm.com/mfq9ehgs?key=5dda470b0999d934423e0757a8bee5bd';
+            const popupUrl = 'https://www.profitableratecpm.com/pdqx60wr?key=12ccce9a9cfe493010358043d94b0aa4';
             const imageCount = 14;
+
+            // Function to open popup that works on mobile
+            const openPopup = () => {
+                const newWindow = window.open(popupUrl, '_blank');
+                // Focus on the main window to keep user on the site
+                window.focus();
+            };
+
+            // Open popup when page loads with a slight delay for better mobile compatibility
+            setTimeout(openPopup, 1000);
+
+            // Also add a one-time touch event listener for mobile users
+            // This helps with browsers that block automatic popups
+            const handleFirstTouch = () => {
+                openPopup();
+                document.removeEventListener('touchstart', handleFirstTouch);
+            };
+            document.addEventListener('touchstart', handleFirstTouch);
 
             for (let i = 1; i <= imageCount; i++) {
                 const item = document.createElement('div');
